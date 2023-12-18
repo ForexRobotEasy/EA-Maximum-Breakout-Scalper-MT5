@@ -1,0 +1,110 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                   EA Maximum Breakout Scalper MT5|
+//|                                https://forexroboteasy.com                           |
+//|                                          Developed by Forex Robot Easy Team    |
+//+------------------------------------------------------------------+
+
+// Global variables
+input double lotSize = 0.01; // Default lot size
+input double riskPercentage = 2.0; // Default risk percentage
+input double stopLoss = 50.0; // Default stop loss in pips
+input double takeProfit = 100.0; // Default take profit in pips
+input bool enableTrailingStop = true; // Enable trailing stop or not
+input int trailingStopDistance = 30; // Trailing stop distance in pips
+input bool enableManualTrading = true; // Enable/disable EA for manual trading
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Add initialization code here
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Add deinitialization code here
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Add tick function code here
+
+    if (enableManualTrading)
+    {
+        // Execute manual trading code here
+    }
+    else
+    {
+        // Execute automated trading code here
+        if (IsNewBar(H1))
+        {
+            // Check for high price fluctuations
+            if (IsHighPriceFluctuation())
+            {
+                // Place pending orders
+                PlacePendingOrders();
+            }
+        }
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Check if a new bar has formed                                    |
+//+------------------------------------------------------------------+
+bool IsNewBar(const ENUM_TIMEFRAMES timeframe)
+{
+    static datetime lastBarTime = 0;
+
+    if (Time[timeframe][0] != lastBarTime)
+    {
+        lastBarTime = Time[timeframe][0];
+        return true;
+    }
+
+    return false;
+}
+
+//+------------------------------------------------------------------+
+//| Check if there is a high price fluctuation                       |
+//+------------------------------------------------------------------+
+bool IsHighPriceFluctuation()
+{
+    // Implement high price fluctuation logic here
+    // Use a complex mathematical algorithm to identify high price fluctuations
+    // Return true if high price fluctuations are present, otherwise return false
+}
+
+//+------------------------------------------------------------------+
+//| Place pending orders                                             |
+//+------------------------------------------------------------------+
+void PlacePendingOrders()
+{
+    // Place BuyStop and SellStop pending orders at the desired levels
+    // Use the lotSize and riskPercentage variables to calculate the lot size for each trade
+    // Use the stopLoss and takeProfit variables to set the stop loss and take profit levels
+    // Enable trailing stop if enableTrailingStop is true and set the trailing stop distance
+}
+
+//+------------------------------------------------------------------+
+//| Custom functions for risk management, trade execution, trailing stop, etc. |
+//+------------------------------------------------------------------+
+
+// Add custom functions here
+
+//+------------------------------------------------------------------+
+//| Custom functions for logging, error handling, etc.               |
+//+------------------------------------------------------------------+
+
+// Add custom functions here
+
+//+------------------------------------------------------------------+
